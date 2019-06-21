@@ -1,4 +1,4 @@
-Software to collect donations for nonprofits. It integrates with Saleforce, Stripe, Amazon Pay, Sentry and Slack.
+Software to collect donations for nonprofits. It integrates with Saleforce, Stripe, Amazon Pay, Slack and Sentry.
 
 Donations
 =========

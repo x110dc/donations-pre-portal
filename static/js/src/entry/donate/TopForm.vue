@@ -21,7 +21,6 @@
           :store-module="storeModule"
           base-classes="form__radios form__radios--stack-at-medium"
           name="installment_period"
-          @updateCallback="onFrequencyUpdate"
         />
       </div>
     </div>
@@ -34,6 +33,7 @@
           label-text="amount ($)"
           base-classes="form__text form__text--heavy"
           name="amount"
+          inputmode="decimal"
         />
       </div>
     </div>
@@ -56,6 +56,7 @@
           type="email"
           base-classes="form__text form__text--standard"
           name="stripeEmail"
+          inputmode="email"
         />
       </div>
     </div>
@@ -100,6 +101,7 @@
           label-text="zip code"
           base-classes="form__text form__text--standard"
           name="zipcode"
+          inputmode="numeric"
         />
       </div>
     </div>
@@ -169,11 +171,9 @@
     </div>
 
     <local-hidden :value="stripeToken" name="stripeToken" />
-    <hidden name="installments" :store-module="storeModule" />
     <hidden name="description" :store-module="storeModule" />
     <hidden name="campaign_id" :store-module="storeModule" />
     <hidden name="referral_id" :store-module="storeModule" />
-    <hidden name="openended_status" :store-module="storeModule" />
     <hidden name="pay_fees_value" :store-module="storeModule" />
   </form>
 </template>
@@ -217,24 +217,6 @@ export default {
         { id: 2, text: 'Yearly donation', value: 'yearly' },
       ],
     };
-  },
-
-  methods: {
-    onFrequencyUpdate(newValue) {
-      let openEndedVal = '';
-
-      if (newValue === 'yearly' || newValue === 'monthly') {
-        openEndedVal = 'Open';
-      } else if (newValue === 'None') {
-        openEndedVal = 'None';
-      }
-
-      this.updateValue({
-        storeModule: this.storeModule,
-        key: 'openended_status',
-        value: openEndedVal,
-      });
-    },
   },
 };
 </script>

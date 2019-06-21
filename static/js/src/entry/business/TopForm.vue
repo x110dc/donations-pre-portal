@@ -21,7 +21,9 @@
 
     <div class="grid_container--l grid_separator">
       <div class="grid_row">
-        <div class="col"><form-buckets /></div>
+        <div class="col">
+          <form-buckets :all-levels="allLevels" :store-module="storeModule" />
+        </div>
       </div>
     </div>
 
@@ -36,6 +38,7 @@
             type="email"
             base-classes="form__text form__text--standard"
             name="stripeEmail"
+            inputmode="email"
           />
         </div>
       </div>
@@ -57,6 +60,7 @@
             label-text="website"
             base-classes="form__text form__text--standard"
             name="website"
+            inputmode="url"
           />
         </div>
       </div>
@@ -99,6 +103,7 @@
             label-text="zip code"
             base-classes="form__text form__text--standard"
             name="shipping_postalcode"
+            inputmode="numeric"
           />
         </div>
       </div>
@@ -208,10 +213,8 @@
       <local-hidden :value="stripeToken" name="stripeToken" />
       <hidden name="campaign_id" :store-module="storeModule" />
       <hidden name="referral_id" :store-module="storeModule" />
-      <hidden name="installments" :store-module="storeModule" />
       <hidden name="description" :store-module="storeModule" />
       <hidden name="pay_fees_value" :store-module="storeModule" />
-      <hidden name="openended_status" :store-module="storeModule" />
       <hidden name="installment_period" :store-module="storeModule" />
       <hidden name="amount" :store-module="storeModule" />
     </div>
@@ -227,10 +230,10 @@ import SelectList from '../../elements/SelectList.vue';
 import ManualPay from '../../elements/ManualPay.vue';
 import ManualSubmit from '../../elements/ManualSubmit.vue';
 import NativePay from '../../elements/NativePay.vue';
-import FormBuckets from './FormBuckets.vue';
+import FormBuckets from '../../elements/FormBuckets.vue';
 import Benefits from './Benefits.vue';
 import formStarter from '../../mixins/form/starter';
-import { US_STATES_SELECT_LIST } from './constants';
+import { US_STATES_SELECT_LIST, BUSINESS_LEVELS } from './constants';
 
 export default {
   name: 'TopForm',
@@ -256,6 +259,7 @@ export default {
       serverErrorMessage: window.__TOP_FORM_SERVER_ERROR_MESSAGE__,
       usStatesOptions: US_STATES_SELECT_LIST,
       storeModule: 'businessForm',
+      allLevels: BUSINESS_LEVELS,
     };
   },
 };

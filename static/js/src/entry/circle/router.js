@@ -6,23 +6,21 @@ import RouteHandler from '../../RouteHandler.vue';
 import TopForm from './TopForm.vue';
 import Wall from './Wall.vue';
 import mergeValuesIntoStartState from '../../utils/mergeValuesIntoStartState';
-import { CIRCLE_BUCKETS, CIRCLE_FORM_STATE } from './constants';
+import { CIRCLE_LEVELS, CIRCLE_FORM_STATE, DEFAULT_LEVEL } from './constants';
 
 Vue.use(VueRouter);
 
 function getStateFromParams(queryParams) {
-  const defaultLevel = 'editorMonthly';
   const { campaignId = '', referralId = '' } = queryParams;
-  let { level = defaultLevel } = queryParams;
+  let { level = DEFAULT_LEVEL } = queryParams;
 
-  if (!CIRCLE_BUCKETS[level]) level = defaultLevel;
+  if (!CIRCLE_LEVELS[level]) level = DEFAULT_LEVEL;
 
-  const { amount, installments, installmentPeriod } = CIRCLE_BUCKETS[level];
+  const { amount, installmentPeriod } = CIRCLE_LEVELS[level];
 
   return {
     level,
     amount,
-    installments,
     installment_period: installmentPeriod,
     campaign_id: campaignId,
     referral_id: referralId,
