@@ -1,3 +1,5 @@
+This fork is just here to capture the state of https://github.com/texastribune/donations before the portal functionality was added in case that's helpful to someone.
+
 Software to collect donations for nonprofits. It integrates with Saleforce, Stripe, Amazon Pay, Slack and Sentry.
 
 Donations
